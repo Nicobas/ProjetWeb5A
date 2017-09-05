@@ -1,6 +1,7 @@
 var expressInit = require('./initializers/express');
 var databaseInit = require('./initializers/database');
 var httpsInit = require('./initializers/https');
+var socketInit = require('./initializers/socket');
 
 var errorManager = require('./services/errorManager');
 
@@ -39,6 +40,10 @@ async.waterfall(
         function (app, callback) {
             httpsInit(app, callback);
         },
+        function (server, callback) {
+        // Initialize Socket.io server
+        socketInit(server, callback);
+    },
         function (server, callback) {
             // Run server listener
             server.listen(nconf.get('api_server_port'));
