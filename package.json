@@ -1,0 +1,33 @@
+{
+  "name": "projetwebs5",
+  "version": "1.0.0",
+  "description": "Projet web 5A ESIEA",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "nodemon ./server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicobas/ProjetWeb5A.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicobas/ProjetWeb5A/issues"
+  },
+  "homepage": "https://github.com/Nicobas/ProjetWeb5A#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.17.2",
+    "change-case": "^3.0.1",
+    "dateformat": "^2.0.0",
+    "express": "^4.15.4",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mongoose": "^4.11.10",
+    "morgan": "^1.8.2",
+    "nconf": "^0.8.4",
+    "require-dir": "^0.3.2",
+    "winston": "^2.3.1"
+  }
+}
