@@ -16,6 +16,11 @@ module.exports = function (cb) {
     logger.info('[EXPRESS] Initializing routes');
     require('../routes/index')(app);
 
+    logger.info('[EXPRESS] Initializing public data');
+
+    app.use(express.static(nconf.get('public_directory_path'), {
+    }));
+
     // Error handler
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
