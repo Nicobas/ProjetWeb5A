@@ -48,7 +48,7 @@ async.waterfall(
             // Run server listener
             server.listen(nconf.get('api_server_port'));
             logger.info('[API] Listening on port ' + nconf.get('api_server_port'));
-
+            console.log("API running");
             callback();
         }
     ],
