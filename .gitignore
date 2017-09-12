@@ -41,3 +41,4 @@ package-lock.json
 /.idea/
 
 /server/parameters.js
+.~lock*
