@@ -1,7 +1,7 @@
 var AuthenticateToken = require('../models/AuthenticateToken');
 var User = require('../models/User');
 
-module.exports = function (req, res, cb, role, allowUnconfirmed, allowBlocked, fields) {
+module.exports = function (req, res, cb, fields) {
     if (!req.headers.authorization)
         res.status(401).json({message: 'Unauthorized'});
     else {
