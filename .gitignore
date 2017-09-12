@@ -39,3 +39,5 @@ package-lock.json
 
 # IDE Files
 /.idea/
+
+/server/parameters.js
