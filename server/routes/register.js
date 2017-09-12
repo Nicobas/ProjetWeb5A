@@ -13,13 +13,7 @@ module.exports = function (router) {
             async.waterfall(
                 [
                     function (done) {
-                        verifyPseudo(req.body.pseudo, errors, res, done);
-                    },
-                    function (done) {
                         verifyEmail(req.body.email, errors, res, done);
-                    },
-                    function (done) {
-                        verifyPhone(req.body.phone, errors, res, done);
                     },
                     function (done) {
                         verifyPassword(req.body.password, errors, done);
@@ -39,57 +33,30 @@ module.exports = function (router) {
                         var newUser = new User({
                             pseudo: req.body.pseudo,
                             email: req.body.email,
-                            phone: req.body.phone,
                             password_hash: req.body.password.first,
-                            status: nconf.get('environment') === 'dev' ? 'Active' : 'Unconfirmed',
-                            confirmation_token: generator.generateToken(),
-                            last_notification_request: new Date(),
+                            status: 'Online',
                             creation_ip: req.connection.remoteAddress
                         });
 
                         // Attempt to save the user
-                        database.save(newUser, function (err) {
+                        newUser.save(function (err) {
                             if (err) {
                                 err.httpRes = res;
                                 throw err;
                             }
 
-                            mailer.sendMail(newUser.email, "Skeel registration",
-                                '<b>Utilisateur créé, confirmez le compte</b><br />User id : ' + newUser.id + '<br />Confirmation token : ' + newUser.confirmation_token,
-                                function (err) {
-                                    if (err) {
-                                        err.httpRes = res;
-                                        throw err;
-                                    }
+                            var userRes = {
+                                id: newUser._id,
+                                pseudo: newUser.pseudo,
+                                email: newUser.email,
+                                status: newUser.status
+                            };
 
-                                    var userRes = {
-                                        id: newUser._id,
-                                        pseudo: newUser.pseudo,
-                                        email: newUser.email,
-                                        phone: newUser.phone,
-                                        status: newUser.status
-                                    };
-
-                                    if (nconf.get('environment') === 'dev')
-                                        userRes.confirmationToken = newUser.confirmation_token;
-
-                                    res.status(201).json(userRes);
-                                });
+                            res.status(201).json(userRes);
                         });
                     }
                 }
             );
-        });
-
-    router.route('/verifyPseudo/:pseudo')
-        .get(function (req, res, next) {
-            User.findOne({pseudo: req.params.pseudo}, function (err, o) {
-                if (err) {
-                    err.httpRes = res;
-                    throw err;
-                }
-                res.status(200).json({isAvailable: !o});
-            });
         });
 
     router.route('/verifyEmail/:email')
@@ -102,31 +69,6 @@ module.exports = function (router) {
                 res.status(200).json({isAvailable: !o});
             });
         });
-
-    var verifyPseudo = function (value, errors, res, done) {
-        if (!value) {
-            errors.push({field: "pseudo", message: "Pseudo is required"});
-            done();
-        }
-        else {
-            if (value && !(/^(?=.*[a-zA-Z])[0-9a-zA-Z_-]{3,32}$/).test(value)) {
-                errors.push({field: "pseudo", message: "Invalid pseudo format"});
-                done();
-            }
-            else {
-                User.count({pseudo: value}, function (err, c) {
-                    if (err) {
-                        err.httpRes = res;
-                        throw err;
-                    }
-
-                    if (c !== 0)
-                        errors.push({field: "pseudo", message: "Pseudo is already used"});
-                    done();
-                });
-            }
-        }
-    };
 
     var verifyEmail = function (value, errors, res, done) {
         if (!value) {

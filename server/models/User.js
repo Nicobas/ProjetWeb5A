@@ -8,16 +8,49 @@ var Schema = mongoose.Schema,
 var UserSchema = new Schema({
     pseudo: {
         type: String,
-        unique: true,
         required: true
     },
     email: {
         type: String,
         lowercase: true
     },
+    phrase: {
+        type: String,
+    },
     password_hash: {
         type: String
     },
+    // status: {
+    //     type: String,
+    //     enum: ['Online', 'Busy', 'Away', 'Offline'],
+    //     required: true
+    // },
+    contacts: [
+        {
+            _user: {
+                type: ObjectId,
+                ref: 'User',
+                required: true
+            },
+            creation_date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
+    conversations: [
+        {
+            _conversation: {
+                type: ObjectId,
+                ref: 'Conversation',
+                required: true
+            },
+            creation_date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
     last_authentication: {
         type: Date
     },
