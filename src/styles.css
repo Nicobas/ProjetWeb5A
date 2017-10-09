@@ -1,0 +1,49 @@
+body{
+	background-image: url("./assets/img/background.png");
+	font-family: 'Open Sans', sans-serif;
+}
+
+h2{
+	text-align:center;
+}
+.login-container{
+	position:absolute;
+	
+	background-color: #F9F9F9;
+	height:50vh;
+	width:50vw;
+	top: 50vh;
+	left:50vw; 
+ 	transform: translateY(-50%) translateX(-50%); 
+}
+
+.rotate-90deg {
+    margin: 0;
+    padding: 0;
+    -webkit-transform-origin: 0 0;
+       -moz-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+         -o-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: rotate(-90deg);
+       -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+         -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+}
+.register{ 
+	width:100%;
+ 	margin-top: 17vh;
+ 	margin-left:7vw;
+}
+	.register a{
+		width:10%;
+	}
+.login{
+	width:100%;
+ 	margin-top: 48vh;
+ 	margin-left:7vw;
+}
+.login a{
+		width:10%;
+	}

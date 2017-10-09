@@ -1,0 +1,48 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container" *ngIf="!token">
+    <div class="login rotate-90deg">
+      <a class="waves-effect waves-light btn z-depth-3 hoverable" style="background-color: #fff; color:#ebb81e"  (click)="changePage('login')">Login</a>
+    </div>
+    <div class="register rotate-90deg">
+      <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e"  (click)="changePage('register')">Register</a>
+    </div>
+    <div class="login-container z-depth-3 center-align valign-wrapper">
+
+      <div class="container" *ngIf="page==='login'" >
+      <i style="" class="grey-text text-darken-2 small material-icons">account_circle</i>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
+          </div>
+        </div>
+        <div class="row">
+          <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
+          <div class="input-field col s12">
+
+          </div>
+          <a class="waves-effect waves-light btn" style="background-color: #ebb81e" (click)="connection()" >Login</a>
+        </div>
+      </div>
+
+     <div class="container" *ngIf="page==='register'">
+        <div class="row">
+        <div class="input-field col s12">
+            <input id="pseudo" type="email" class="validate" placeholder="Username" [(ngModel)]="username">
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
+          </div>
+
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
+
+          </div>
+        </div>
+          <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="verifyEmail()">Register</a>
+      </div>
+    </div>
+</div>
+
