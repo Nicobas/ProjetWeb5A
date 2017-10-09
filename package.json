@@ -4,6 +4,7 @@
   "description": "Projet web 5A ESIEA",
   "main": "server/app.js",
   "scripts": {
+    "start": "nodemon ./server/app.js"
     "start": "ng serve",
     "ng": "ng",
     "build": "ng build",
@@ -20,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/Nicobas/ProjetWeb5A/issues"
   },
-  "private": true,
   "homepage": "https://github.com/Nicobas/ProjetWeb5A#readme",
   "dependencies": {
     "@angular/animations": "^4.4.4",
