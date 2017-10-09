@@ -11,7 +11,7 @@ nconf.set('refresh_token_duration', 15778800); //= 6 mois
 
 nconf.set('api_server_port', 4000);
 
-nconf.set('public_directory_path', '/home/nicobas/IntelliJIDEAProjects/ProjetWebS5/client/');
+nconf.set('public_directory_path', '/Users/ihebfehri/Documents/local-repo/projetweb5a/client');
 
 nconf.set('ssl_key_path', 'server/ssl/key.pem');
 nconf.set('ssl_cert_path', 'server/ssl/cert.pem');

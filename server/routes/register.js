@@ -109,4 +109,21 @@ module.exports = function (router) {
 
         done();
     };
+
+/*
+MOVE ME
+ */
+    router.route('/users?mail=:mail|pseudo=:pseudo')
+        .get(function (req, res, next) {
+            User.findOne({email: req.params.email}, function (err, o) { //to modify later
+                if (err) {
+                    err.httpRes = res;
+                    throw err;
+                }
+                res.status(200).json({isAvailable: !o});
+            });
+        });
+
+
+
 };

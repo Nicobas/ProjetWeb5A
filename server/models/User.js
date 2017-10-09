@@ -64,6 +64,7 @@ var UserSchema = new Schema({
 });
 
 // Saves the user's password hashed (plain text password storage is not good)
+//pre va s'executer avant la fonction
 UserSchema.pre('save', function (next) {
     var user = this;
     if (user.password_hash && (this.isModified('password') || this.isNew)) {
