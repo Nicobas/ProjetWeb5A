@@ -25,8 +25,8 @@ export class AuthService {
     // }
   }
 
-  verifyEmail(username: string, email: string, pass: string): any {
-    return this.http.get(``)
+  verifyEmail(email: string): any {
+    return this.http.get('/verifyEmail/:email')
       .map((res: Response) => res.json());
   }
 }

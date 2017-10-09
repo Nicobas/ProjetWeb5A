@@ -8,7 +8,7 @@ import { AuthService } from './authentication.service';
   providers: [AuthService]
 })
 export class AppComponent {
-  username = ''
+  username = '';
   email = '';
   pass = '';
   token = 0;
@@ -24,7 +24,7 @@ export class AppComponent {
   }
 
   verifyEmail() {
-    this.token = this.authService.verifyEmail(this.username, this.email, this.pass);
+    this.token = this.authService.verifyEmail(this.email);
   }
 }
 
