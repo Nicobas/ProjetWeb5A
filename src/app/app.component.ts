@@ -24,7 +24,7 @@ export class AppComponent {
   }
 
   verifyEmail() {
-    this.token = this.authService.verifyEmail(this.email);
+    this.authService.verifyEmail(this.email);
   }
 }
 

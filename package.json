@@ -4,8 +4,8 @@
   "description": "Projet web 5A ESIEA",
   "main": "server/app.js",
   "scripts": {
-    "start": "nodemon ./server/app.js",
-    "serve": "ng serve",
+    "start": "ng serve",
+    "start2": "nodemon ./server/app.js",
     "ng": "ng",
     "build": "ng build",
     "test": "ng test",

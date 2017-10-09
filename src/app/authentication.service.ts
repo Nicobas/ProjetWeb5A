@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
+  constructor(private http: HttpClient) {}
+  private apiUrl = 'https://localhost:4000/';
+  private verifyEmailRoute = 'register/verifyEmail/';
+  private url : string;
+  test: boolean;
   auxane: User = {
     email: 'auxane',
     password: '1234',
@@ -13,20 +17,15 @@ export class AuthService {
     phrase: 'Je me kiffe',
   };
 
-  constructor (
-    private http: Http
-  ) {}
-
   connection(login: string, pass: string): any {
-    return this.http.get(``)
-      .map((res: Response) => res.json());
     // if ( login === this.auxane.email  &&  pass  === this.auxane.password ) {
     //   return 1;
     // }
   }
 
-  verifyEmail(email: string): any {
-    return this.http.get('/verifyEmail/:email')
-      .map((res: Response) => res.json());
+  verifyEmail(email: string): boolean {
+    this.url = this.apiUrl + this.verifyEmailRoute + email;
+    this.http.get(this.url).subscribe(data => this.test = data['isAvailable']);
+    return this.test;
   }
 }
