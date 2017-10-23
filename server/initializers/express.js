@@ -12,6 +12,12 @@ module.exports = function (cb) {
     app.use(morgan('common'));
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json({type: '*/*'}));
+  
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 
     logger.info('[EXPRESS] Initializing routes');
     require('../routes/index')(app);
