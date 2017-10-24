@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
-  private apiUrl = 'https://localhost:4000/';
+  private apiUrl = 'https://skeelofficial.fr:4000/';
   private verifyEmailRoute = 'register/verifyEmail/';
   private url : string;
   test: boolean;

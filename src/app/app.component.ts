@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from './authentication.service';
+import { UserService } from './user.service';
+import { ConversationService } from './conversation.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['../assets/css/materialize.css', '../assets/css/main.css'],
-  providers: [AuthService]
+  providers: [AuthService, UserService, ConversationService]
 })
 export class AppComponent {
   username = '';
@@ -13,8 +15,8 @@ export class AppComponent {
   pass = '';
   token = 0;
   page = 'login';
-
-  constructor(private authService: AuthService) { }
+  isAvailable = false;
+  constructor(private authService: AuthService, private ConversationService: ConversationService, private UserService: UserService) { }
 
   changePage(choice: string) {
     this.page = choice;
@@ -24,7 +26,7 @@ export class AppComponent {
   }
 
   verifyEmail() {
-    this.authService.verifyEmail(this.email);
+    this.isAvailable = this.authService.verifyEmail(this.email);
   }
 }
 
