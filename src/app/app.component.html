@@ -12,6 +12,7 @@
       <div class="container" *ngIf="page==='login'" >
       <i style="" class="grey-text text-darken-2 small material-icons">account_circle</i>
         <div class="row">
+          <p class="error"*ngIf="error">Wrong credentials.</p>
           <div class="input-field col s12">
             <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
           </div>
@@ -27,6 +28,9 @@
 
      <div class="container" *ngIf="page==='register'">
         <div class="row">
+
+          <p class="error" *ngIf="errorRegister">Register failed : please check your information</p>
+          <p  *ngIf="id">Registration succeed</p>
         <div class="input-field col s12">
             <input id="pseudo" type="email" class="validate" placeholder="Username" [(ngModel)]="username">
           </div>
@@ -44,9 +48,7 @@
         </div>
           <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="register()">Register</a>
       </div>
-      {{isAvailable}}
     </div>
-  {{test}}
   </div>
   <div *ngIf="token > 0">
 

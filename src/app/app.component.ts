@@ -15,16 +15,29 @@ export class AppComponent {
   pass = '';
   token = 0;
   page = 'login';
+  error: string;
+  data: string;
+  errorRegister: string;
+  id: string;
+
   constructor(private authService: AuthService, private conversationService: ConversationService, private userService: UserService) { }
 
   changePage(choice: string) {
     this.page = choice;
   }
   connection() {
-    this.authService.connection(this.email, this.pass);
+    this.authService.connection(this.email, this.pass).subscribe(
+      (data) => this.token = data['token'],
+      (err) => this.error = err['message']
+    );
   }
   register() {
-    this.authService.register(this.username, this.email, this.pass);
+    this.errorRegister ='';
+    this.id= ''
+    this.authService.register(this.username, this.email, this.pass).subscribe(
+      (data) => this.id = data['id'],
+      (err) => this.errorRegister = err
+    );
   }
 
 }
