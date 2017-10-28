@@ -4,11 +4,11 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) {}
-  modifyUser(): void{
+  modifyUser(): void {
   }
-  getUser(): void{
+  getUser(): void {
 
   }
-  getUserConv(): void{
+  getUserConv(): void {
   }
 }

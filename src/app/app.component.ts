@@ -15,19 +15,18 @@ export class AppComponent {
   pass = '';
   token = 0;
   page = 'login';
-  isAvailable = false;
-  constructor(private authService: AuthService, private ConversationService: ConversationService, private UserService: UserService) { }
+  constructor(private authService: AuthService, private conversationService: ConversationService, private userService: UserService) { }
 
   changePage(choice: string) {
     this.page = choice;
   }
   connection() {
-    this.token = this.authService.connection(this.email, this.pass);
+    this.authService.connection(this.email, this.pass);
+  }
+  register() {
+    this.authService.register(this.username, this.email, this.pass);
   }
 
-  verifyEmail() {
-    this.isAvailable = this.authService.verifyEmail(this.email);
-  }
 }
 
 

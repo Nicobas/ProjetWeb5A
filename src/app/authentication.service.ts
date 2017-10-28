@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
   private apiUrl = 'https://skeelofficial.fr:4000/';
-  private verifyEmailRoute = 'register/verifyEmail/';
-  private url : string;
+  private connectionRoute = 'auth/login';
+  private registerRoute = 'register';
+  private url: string;
   test: boolean;
-  auxane: User = {
-    email: 'auxane',
-    password: '1234',
-    pseudo: '4ux4ne',
-    picture: '../assets/profilpic.jpg',
-    phrase: 'Je me kiffe',
-  };
 
-  connection(login: string, pass: string): any {
-    // if ( login === this.auxane.email  &&  pass  === this.auxane.password ) {
-    //   return 1;
-    // }
+  connection(email: string, password: string): void {
+    this.url = this.apiUrl + this.connectionRoute;
+    const json = {login: email, password: password, refreshToken: true};
+    this.http.post(this.url, json);
   }
 
-  verifyEmail(email: string): boolean {
-    this.url = this.apiUrl + this.verifyEmailRoute + email;
-    this.http.get(this.url).subscribe(data => this.test = data['isAvailable']);
-    return this.test;
+  register(pseudo: string, email: string, password: string): void {
+    this.url = this.apiUrl + this.registerRoute;
+    const json = { pseudo: pseudo, email: email, password: {first: password, second: password}};
+    this.http.post(this.url, json).subscribe();
+
   }
 }
