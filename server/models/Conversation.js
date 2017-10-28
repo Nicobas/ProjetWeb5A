@@ -10,8 +10,9 @@ var ConversationSchema = new Schema({
             _author: {
                 type: ObjectId,
                 ref: 'User',
-                required: true
+            //    required: true
             },
+
             content: {
                 type: String
             },

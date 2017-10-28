@@ -45,6 +45,11 @@ var UserSchema = new Schema({
                 ref: 'Conversation',
                 required: true
             },
+            _partner: {
+              type: ObjectId,
+              ref: 'User',
+              required: true
+            },
             creation_date: {
                 type: Date,
                 default: Date.now

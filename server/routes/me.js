@@ -119,35 +119,52 @@ module.exports = function (router) {
     //create a conversation from an authenticated user with another.
     router.route('/conversations')
         .post(
-         //  function (req, res, next) {
-         //    auth(req, res, next)
-         // },
           function (req, res, next) {
-            var list = [req.body.EmailSender, req.body.EmailReciever]
-            var sender = req.body.EmailSender;
-            var reciever = req.body.EmailReciever;
-            var msg = "test";
-            var conv = new Conversation (
-              {
-                participant: {_user: sender},
-                messages: {_author: sender, content: msg}
-              });
+            auth(req, res, next, 'conversations')
+         },
+          function (req, res, next) {
+            if (!req.body.userId) {
+              res.status(400).json({})
+            }
+            else {
+              User.findOne({_id: req.body.userId},
+                '_id conversations',
+                function (err, user) {
 
+                  var conv = new Conversation({
+                    participants: [
+                      {
+                        _user: req.me
+                      },
+                      {
+                        _user: user
+                      }
+                    ]
+                  });
 
-            //   participant : { _user: [sender,reciever] },
-            //   messages : { _author:sender,content:msg}
-            //
-            // });
+                  // save it in the user
+                  req.me.conversations.push({
+                    _conversation: conv,
+                    _partner: user
+                  });
 
+                  user.conversations.push({
+                    _conversation: conv,
+                    _partner: req.me
+                  });
 
-            database.save(conv,function (err) {
-                if (err) {
-                    err.httpRes = res;
-                    throw err;
-                } else {
-                    console.log('new conv.')
-                }
-            })
+                  // save multiple files
+                  database.saveRecursive([conv, req.me, user],function (err) {
+                    if (err) {
+                      err.httpRes = res;
+                      throw err;
+                    } else {
+                      console.log('conv', conv)
+                      res.status(201).json({id: conv._id})
+                    }
+                  })
+                });
+            }
         });
 
 
