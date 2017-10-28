@@ -8,6 +8,7 @@ export class AuthService {
   private apiUrl = 'https://skeelofficial.fr:4000/';
   private connectionRoute = 'auth/login';
   private registerRoute = 'register';
+  private logoutRoute = 'auth/logout';
   private url: string;
 
   connection(email: string, password: string): Observable<Response> {
@@ -22,4 +23,9 @@ export class AuthService {
     return this.http.post(this.url, json);
 
   }
+
+  logout(): void {
+    this.url = this.apiUrl + this.logoutRoute;
+    this.http.delete(this.url).subscribe();
+}
 }

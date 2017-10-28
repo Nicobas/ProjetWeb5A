@@ -13,7 +13,7 @@ export class AppComponent {
   username = '';
   email = '';
   pass = '';
-  token = 0;
+  token = '';
   page = 'login';
   error: string;
   data: string;
@@ -27,17 +27,23 @@ export class AppComponent {
   }
   connection() {
     this.authService.connection(this.email, this.pass).subscribe(
-      (data) => this.token = data['token'],
+      (data) => this.token = data['refreshToken'],
       (err) => this.error = err['message']
     );
+   this.pass = '';
   }
   register() {
-    this.errorRegister ='';
-    this.id= ''
+    this.errorRegister = '';
+    this.id = '';
     this.authService.register(this.username, this.email, this.pass).subscribe(
       (data) => this.id = data['id'],
       (err) => this.errorRegister = err
     );
+  }
+
+  logout() {
+    this.authService.logout();
+    this.token = '';
   }
 
 }
