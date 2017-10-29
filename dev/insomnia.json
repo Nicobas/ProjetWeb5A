@@ -1,13 +1,13 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-09-12T13:04:49.905Z",
-	"__export_source": "insomnia.desktop.app:v5.0.10",
+	"__export_date": "2017-10-29T16:01:59.600Z",
+	"__export_source": "insomnia.desktop.app:v5.0.20",
 	"resources": [
 		{
 			"_id": "wrk_ed1134f64b154f27a1f8fece19d977f2",
 			"parentId": null,
-			"modified": 1504599875361,
+			"modified": 1509287271576,
 			"created": 1504599875361,
 			"name": "ProjetWeb5A",
 			"description": "",
@@ -17,19 +17,19 @@
 		{
 			"_id": "env_db2e1acf5c1a4226bf329f920b23ffd7",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219567576,
+			"modified": 1509291787230,
 			"created": 1504599908394,
 			"name": "Base Environment",
 			"data": {
 				"base_api_url": "https://localhost:4000",
-				"api_key": "A4xbkqGjmyRCHlDaeLq8I3PIXiWM3HDA7NXVVAvXTfm5o8J7ouBjFmV8uLAlx16P51bkrMSiMB2D91VUCN8t11"
+				"api_key": "olUz3lrz5P9tg7P8c5zlqaWUBlegyNH59J0YX5LYgdSheqy33vg7UQfMVG0NvARD1k7FuQaB5NtqZvMuPdPaIR"
 			},
 			"_type": "environment"
 		},
 		{
 			"_id": "jar_ff1b834e7dba41bbb46ba99cb177eaa5",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219569917,
+			"modified": 1509292903856,
 			"created": 1504599932539,
 			"name": "Default Jar",
 			"cookies": [],
@@ -38,14 +38,14 @@
 		{
 			"_id": "req_39b23329d6a04645b6583973f8ab9275",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219442538,
+			"modified": 1509291771475,
 			"created": 1505217885341,
 			"url": "{{ base_api_url }}/register",
 			"name": "Register",
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"pseudo\": \"bas45\",\n\t\"email\":\"aze@aze.fr\",\n\t\"password\": {\n\t\t\"first\": \"azer1234\",\n\t\t\"second\": \"azer1234\"\n\t}\n}"
+				"text": "{\n\t\"pseudo\": \"bastien\",\n\t\"email\":\"aze2@aze.fr\",\n\t\"password\": {\n\t\t\"first\": \"azer1234\",\n\t\t\"second\": \"azer1234\"\n\t}\n}"
 			},
 			"parameters": [],
 			"headers": [
@@ -56,7 +56,7 @@
 				}
 			],
 			"authentication": {},
-			"metaSortKey": -1505218971545,
+			"metaSortKey": -1509128102682,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,
@@ -66,14 +66,14 @@
 		{
 			"_id": "req_ef8cce000d9544d6b3e2e51c4934601e",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219088105,
+			"modified": 1509287271574,
 			"created": 1505218510750,
 			"url": "{{ base_api_url }}/register/verifyEmail/baas452@exemple.com",
 			"name": "Verify email",
 			"method": "GET",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"pseudo\": \"bas45a2\",\n\t\"email\":\"baas452@exemple.com\",\n\t\"password\": {\n\t\t\"first\": \"azer1234\",\n\t\t\"second\": \"azer1234\"\n\t}\n}"
+				"text": ""
 			},
 			"parameters": [],
 			"headers": [
@@ -94,14 +94,14 @@
 		{
 			"_id": "req_f103ac1909e342c5becacedf788d583b",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219308772,
+			"modified": 1509290503306,
 			"created": 1505218971495,
 			"url": "{{ base_api_url }}/auth/login",
 			"name": "Login",
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"login\":\"aze@aze.fr\",\n\t\"password\":\"azer1234\",\n\t\"refreshToken\": true\n}"
+				"text": "{\n\t\"login\":\"aze3@aze.fr\",\n\t\"password\":\"azer1234\",\n\t\"refreshToken\": true\n}"
 			},
 			"parameters": [],
 			"headers": [
@@ -112,35 +112,7 @@
 				}
 			],
 			"authentication": {},
-			"metaSortKey": -1505218971495,
-			"settingStoreCookies": true,
-			"settingSendCookies": true,
-			"settingDisableRenderRequestBody": false,
-			"settingEncodeUrl": true,
-			"_type": "request"
-		},
-		{
-			"_id": "req_e5e08c1523e64ac9b8c1b5ec6c021c10",
-			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219404097,
-			"created": 1505219319971,
-			"url": "{{ base_api_url }}/auth/refreshToken",
-			"name": "Refresh login",
-			"method": "POST",
-			"body": {
-				"mimeType": "application/json",
-				"text": "{\n\t\"token\":\"FwngQVzZc4klC8Yd3IIM1aQEODmCSoz5kfIov81wDBTPLjSkgCKqeXoqduFwicM1PZmzmG4ngdAsLydxqSUeXV\",\n\t\"refreshToken\": true\n}"
-			},
-			"parameters": [],
-			"headers": [
-				{
-					"name": "Content-Type",
-					"value": "application/json",
-					"id": "pair_73eb10712ed74f859de1263519f6d012"
-				}
-			],
-			"authentication": {},
-			"metaSortKey": -1505218428418,
+			"metaSortKey": -1509128102657,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,
@@ -150,7 +122,7 @@
 		{
 			"_id": "req_1d431851cf89413ea0531cfcc69ed8e8",
 			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
-			"modified": 1505219465705,
+			"modified": 1509290375969,
 			"created": 1505219436656,
 			"url": "{{ base_api_url }}/auth/logout",
 			"name": "Logout",
@@ -165,7 +137,199 @@
 				}
 			],
 			"authentication": {},
-			"metaSortKey": -1505218021110.25,
+			"metaSortKey": -1509128102644.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_fce3ad506cf4472983bb20fff58ed899",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509290358732,
+			"created": 1507542783676,
+			"url": "{{ base_api_url  }}/me",
+			"name": "Infos about me",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_67b10e3225244da28736af7b1a029bf2"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_e43f6bcf708e4d51ae748f2be0bcc121"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1509128102632,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_4a42213c01774219bd4a8578791daad2",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509292193075,
+			"created": 1509116130421,
+			"url": "{{ base_api_url  }}/conversations/59f5f71857ed5414b15a1b2c",
+			"name": "Conversation detail",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_52750fcaaae041c9adcf8691b812d3e6"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_20922c9670a6420c99013700da872463"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1509122999760.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_dca8b049d7a24c6f9d539d47423be904",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509291799017,
+			"created": 1509128102582,
+			"url": "{{ base_api_url  }}/me/conversations",
+			"name": "New conv with an user",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"userId\": \"59f5f6fe57ed5414b15a1b2a\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_7e69d5c4d8a6496180bd1ca02f1eb93c"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_35644b21f1da414aa91c82625a54b195"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1509128102582,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_925affa0308e412ba39fb1165d8088a2",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509291565208,
+			"created": 1509289888864,
+			"url": "{{ base_api_url  }}/me",
+			"name": "Update infos about me",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"toto@toto.frr\",\n\t\"pseudo\": \"toto\",\n\t\"phrase\": \"Coucou tout le monde !\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_7e69d5c4d8a6496180bd1ca02f1eb93c"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_35644b21f1da414aa91c82625a54b195"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1509128102607,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_ed8339a48cc54c81b5d0be536c347590",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509292156513,
+			"created": 1509292090427,
+			"url": "{{ base_api_url  }}/conversations/59f5f71857ed5414b15a1b2c/messages",
+			"name": "Send message",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"content\": \"Salut\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_7e69d5c4d8a6496180bd1ca02f1eb93c"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_35644b21f1da414aa91c82625a54b195"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1509125551171.25,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_a67df7887108470f9d1e655952cec633",
+			"parentId": "wrk_ed1134f64b154f27a1f8fece19d977f2",
+			"modified": 1509292902063,
+			"created": 1509292664647,
+			"url": "{{ base_api_url  }}/findUsers/bas",
+			"name": "Find users",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_52750fcaaae041c9adcf8691b812d3e6"
+				},
+				{
+					"name": "Authorization",
+					"value": "{{ api_key  }}",
+					"id": "pair_20922c9670a6420c99013700da872463"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1507015948281.5,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,

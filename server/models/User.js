@@ -11,8 +11,7 @@ var UserSchema = new Schema({
         required: true
     },
     email: {
-        type: String,
-        lowercase: true
+        type: String
     },
     phrase: {
         type: String,

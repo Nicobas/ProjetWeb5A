@@ -22,14 +22,14 @@ var ConversationSchema = new Schema({
             }
         }
     ],
-    participant:
+    participants:
       [
         {
-            _user: [{
+            _user: {
                 type: ObjectId,
                 ref: 'User',
                 required: true
-            }],
+            },
             creation_date: {
                 type: Date,
                 default: Date.now
