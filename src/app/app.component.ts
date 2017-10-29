@@ -10,32 +10,38 @@ import { ConversationService } from './conversation.service';
   providers: [AuthService, UserService, ConversationService]
 })
 export class AppComponent {
-  username = '';
-  email = '';
+  constructor(private authService: AuthService, private conversationService: ConversationService, private userService: UserService) { }
   pass = '';
-  token = '';
   page = 'login';
   error: string;
   data: string;
   errorRegister: string;
-  id: string;
+  connected = false;
+  token = '';
+  id = '';
+  pseudo = '';
+  conversation = [''];
+  email= '';
 
-  constructor(private authService: AuthService, private conversationService: ConversationService, private userService: UserService) { }
 
   changePage(choice: string) {
     this.page = choice;
   }
   connection() {
     this.authService.connection(this.email, this.pass).subscribe(
-      (data) => this.token = data['refreshToken'],
-      (err) => this.error = err['message']
+      (data) => {this.token = data['authorizationToken'];
+        console.log('token: ' + this.token);
+        console.log('connection succes');
+      },
+      (err) => this.error = err['message'],
+      () => this.me()
     );
    this.pass = '';
   }
   register() {
     this.errorRegister = '';
     this.id = '';
-    this.authService.register(this.username, this.email, this.pass).subscribe(
+    this.authService.register(this.pseudo, this.email, this.pass).subscribe(
       (data) => this.id = data['id'],
       (err) => this.errorRegister = err
     );
@@ -44,9 +50,15 @@ export class AppComponent {
   logout() {
     this.authService.logout();
     this.token = '';
+    this.connected = false;
+  }
+  me() {
+    console.log('retrieving user\'s data');
+    this.userService.getUser(this.token).subscribe(
+      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversation = data['conversation'])
+    );
+    this.connected = true;
+    console.log('done');
   }
 
 }
-
-
-
