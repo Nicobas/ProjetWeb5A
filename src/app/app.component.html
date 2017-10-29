@@ -53,11 +53,19 @@
   <div *ngIf="connected">
     <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="logout()">Logout</a>
   <div> <p> Your infos : {{pseudo}} {{email}} </p>
-    <p>Your conversations</p>
-    <ul>
-    </ul>
 
   </div>
+    <div>
+      <ul>
+        <li *ngFor="let conversation of conversations">{{conversation}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li *ngFor="let message of selectedConversation">{{message}}</li>
+      </ul>
+    </div>
+
 </div>
 
 
