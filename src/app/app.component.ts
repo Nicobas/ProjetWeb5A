@@ -16,12 +16,13 @@ export class AppComponent {
   error: string;
   data: string;
   errorRegister: string;
-  connected = false;
-  token = '';
-  id = '';
-  pseudo = '';
-  conversation = [''];
-  email= '';
+  connected = true;
+  token = 'test';
+  id = 'test';
+  pseudo = 'test';
+  conversations = ['conv1', 'conv2', 'conv3'];
+  selectedConversation = ['bla', 'blablabla', 'blabla', 'blablabla'];
+  email= 'test@test.fr';
 
 
   changePage(choice: string) {
@@ -48,14 +49,14 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout(this.token);
     this.token = '';
     this.connected = false;
   }
   me() {
     console.log('retrieving user\'s data');
     this.userService.getUser(this.token).subscribe(
-      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversation = data['conversation'])
+      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversations = data['conversation'])
     );
     this.connected = true;
     console.log('done');

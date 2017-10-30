@@ -1,63 +1,101 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
+<div class="container bounceIn" >
   <div *ngIf="!connected">
-    <div class="login rotate-90deg">
-      <a class="waves-effect waves-light btn z-depth-3 hoverable" style="background-color: #fff; color:#ebb81e"  (click)="changePage('login')">Login</a>
-    </div>
-    <div class="register rotate-90deg">
-      <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e"  (click)="changePage('register')">Register</a>
-    </div>
-    <div class="login-container z-depth-3 center-align valign-wrapper">
 
-      <div class="container" *ngIf="page==='login'" >
+
+
+    <div class="choice">
+     <a class="waves-effect waves-light btn z-depth-3 hoverable" style="background-color: #fff; color:#ebb81e"  (click)="changePage('login')">Login</a>
+     <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e"  (click)="changePage('register')">Register</a>
+   </div>
+   <div class="login-container z-depth-3 center-align valign-wrapper">
+
+    <div class="container" *ngIf="page==='login'" >
       <i style="" class="grey-text text-darken-2 small material-icons">account_circle</i>
-        <div class="row">
-          <p class="error" *ngIf="error">Wrong credentials.</p>
-          <div class="input-field col s12">
-            <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
-          </div>
-        </div>
-        <div class="row">
-          <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
-          <div class="input-field col s12">
-
-          </div>
-          <a class="waves-effect waves-light btn" style="background-color: #ebb81e" (click)="connection()" >Login</a>
+      <div class="row">
+        <p class="error" *ngIf="error">Wrong credentials.</p>
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
         </div>
       </div>
-
-     <div class="container" *ngIf="page==='register'">
-        <div class="row">
-
-          <p class="error" *ngIf="errorRegister">Register failed : please check your information</p>
-          <p  *ngIf="id">Registration succeed</p>
+      <div class="row">
+        <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
         <div class="input-field col s12">
-            <input id="pseudo" type="email" class="validate" placeholder="Username" [(ngModel)]="pseudo">
-          </div>
 
         </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
-          </div>
-
-          <div class="input-field col s6">
-            <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
-
-          </div>
-        </div>
-          <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="register()">Register</a>
+        <a class="waves-effect waves-light btn" style="background-color: #ebb81e" (click)="connection()" >Login</a>
       </div>
     </div>
+
+    <div class="container" *ngIf="page==='register'">
+      <div class="row">
+
+        <p class="error" *ngIf="errorRegister">Register failed : please check your information</p>
+        <p  *ngIf="id">Registration succeed</p>
+        <div class="input-field col s12">
+          <input id="pseudo" type="email" class="validate" placeholder="Username" [(ngModel)]="pseudo">
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="email" type="email" class="validate" placeholder="Email" [(ngModel)]="email">
+        </div>
+
+        <div class="input-field col s6">
+          <input id="password" type="password" class="validate" placeholder="Password" [(ngModel)]="pass">
+
+        </div>
+      </div>
+      <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="register()">Register</a>
+    </div>
   </div>
-  <div *ngIf="connected">
-    <a class="waves-effect waves-light btn" style="background-color: #ebb81e"(click)="logout()">Logout</a>
-  <div> <p> Your infos : {{pseudo}} {{email}} </p>
-    <p>Your conversations</p>
-    <ul>
-    </ul>
+</div>
+<div *ngIf="connected" >
+  <a class="waves-effect waves-light btn hoverable" style="background-color: #ebb81e"(click)="logout()">Logout</a>
+  <div> <p style="color:white"> Your infos : {{pseudo}} {{email}} </p>
 
   </div>
+  <div class="row">
+    <div class="col s3 conversation-list" style="background-color:white">
+    <ul>    
+        <h5>Your conversations</h5> 
+        <li *ngFor="let conversation of conversations">
+        <p style="">{{conversation}}</p></li>
+    </ul>
+  </div>
+
+  <div class="col s9">
+    <div class="window ">  
+      <div class="window-controls">
+        <p>{{conversation}}</p>
+      </div>
+        <div class="content">
+
+         <div class="message-box" style="">
+          <ul>
+
+            <li  *ngFor="let message of selectedConversation"> 
+              <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/person.png" style="border-radius:50%; width:20px"> <p class="message" style="display:inline-block">{{message}}</p></li>
+            <li class="message-sent" *ngFor="let message of selectedConversation">{{message}}</li>
+          </ul>
+
+        </div> 
+
+        <div class="inputText col s10">
+
+          <input style="margin-top:15px"type="text"/>
+        </div>
+        <div class="col s2">
+
+          <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e; margin-top:15px"  (click)="changePage('register')">Send</a>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
 </div>
 
 

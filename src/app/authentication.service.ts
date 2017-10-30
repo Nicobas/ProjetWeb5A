@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -10,6 +10,11 @@ export class AuthService {
   private registerRoute = 'register';
   private logoutRoute = 'auth/logout';
   private url: string;
+
+  public jsonHeaders(token: string): HttpHeaders {
+    const headers: HttpHeaders = new HttpHeaders({'Authorization': token});
+    return headers;
+  }
 
   connection(email: string, password: string): Observable<Response> {
     this.url = this.apiUrl + this.connectionRoute;
@@ -24,8 +29,9 @@ export class AuthService {
 
   }
 
-  logout(): void {
+  logout(token: string): void {
+    const header = this.jsonHeaders(token);
     this.url = this.apiUrl + this.logoutRoute;
-    this.http.delete(this.url).subscribe();
+    this.http.delete(this.url, {headers: header}).subscribe();
 }
 }
