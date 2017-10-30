@@ -58,15 +58,15 @@
   </div>
   <div class="row">
     <div class="col s3 conversation-list" style="background-color:white">
-    <ul>    
-        <h5>Your conversations</h5> 
+    <ul>
+        <h5>Your conversations</h5>
         <li *ngFor="let conversation of conversations">
         <p style="">{{conversation}}</p></li>
     </ul>
   </div>
 
   <div class="col s9">
-    <div class="window ">  
+    <div class="window ">
       <div class="window-controls">
         <p>{{conversation}}</p>
       </div>
@@ -75,12 +75,12 @@
          <div class="message-box" style="">
           <ul>
 
-            <li  *ngFor="let message of selectedConversation"> 
+            <li  *ngFor="let message of selectedConversation">
               <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/person.png" style="border-radius:50%; width:20px"> <p class="message" style="display:inline-block">{{message}}</p></li>
             <li class="message-sent" *ngFor="let message of selectedConversation">{{message}}</li>
           </ul>
 
-        </div> 
+        </div>
 
         <div class="inputText col s10">
 
@@ -94,6 +94,15 @@
   </div>
 </div>
 </div>
+
+
+  <div id="search">
+  <input id="Research" type="Research" class="validate" placeholder="Search User" [(ngModel)]="searchId">
+  <a class="waves-effect waves-light btn z-depth-3 hoverable" style="background-color: #fff; color:#ebb81e"  (click)="search()">Search</a>
+    <ul class="userSearch">
+      <li  *ngFor="let user of userSearched" (click)="createConv(user)">{{user.pseudo}}</li>
+    </ul>
+  </div>
 
 
 </div>

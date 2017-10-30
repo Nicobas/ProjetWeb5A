@@ -7,9 +7,9 @@ export class UserService {
   constructor(private http: HttpClient) {}
   private apiUrl = 'https://skeelofficial.fr:4000/';
   private meRoute = 'me';
+  private searchUserRoute = 'findUsers/';
   private url;
-  modifyUser(): void {
-  }
+
   public jsonHeaders(token: string): HttpHeaders {
     const headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': token});
     return headers;
@@ -19,6 +19,10 @@ export class UserService {
     this.url = this.apiUrl + this.meRoute;
     return this.http.get(this.url, {headers: header});
   }
-  getUserConv(): void {
+
+  searchUser(pseudo: string, token: string): Observable<Response> {
+    const header = this.jsonHeaders(token);
+    this.url = this.apiUrl + this.searchUserRoute + pseudo;
+    return this.http.get(this.url, {headers: header});
   }
 }

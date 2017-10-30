@@ -16,14 +16,15 @@ export class AppComponent {
   error: string;
   data: string;
   errorRegister: string;
-  connected = true;
-  token = 'test';
-  id = 'test';
-  pseudo = 'test';
-  conversations = ['conv1', 'conv2', 'conv3'];
-  selectedConversation = ['bla', 'blablabla', 'blabla', 'blablabla'];
-  email= 'test@test.fr';
-
+  connected = false;
+  token = '';
+  id = '';
+  pseudo = '';
+  conversations: string[];
+  selectedConversation = [''];
+  userSearched;
+  email= '';
+  searchId= '';
 
   changePage(choice: string) {
     this.page = choice;
@@ -56,10 +57,21 @@ export class AppComponent {
   me() {
     console.log('retrieving user\'s data');
     this.userService.getUser(this.token).subscribe(
-      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversations = data['conversation'])
+      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversations = data['conversations'])
     );
     this.connected = true;
     console.log('done');
   }
 
+  search() {
+    this.userService.searchUser(this.searchId, this.token).subscribe(
+      (data) => this.userSearched = data
+    );
+  }
+  createConv(user) {
+    this.conversationService.createConv(user.id, this.token).subscribe(
+      (data) => this.conversations.push(data['id'])
+    );
+  }
 }
+
