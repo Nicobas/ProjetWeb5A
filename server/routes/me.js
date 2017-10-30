@@ -88,7 +88,7 @@ module.exports = function (router) {
     .get(function (req, res, next) {
       auth(req, res, next, 'email phrase')
     }, function (req, res, next) {
-      User.findById(req.me._id, 'conversations')
+      User.findById(req.me._id, 'conversations._partner conversations._conversation')
         .populate('conversations._partner', '_id pseudo')
         .exec(function (err, user) {
           var conversations = [];
