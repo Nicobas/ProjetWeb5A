@@ -14,7 +14,7 @@ module.exports = function (router) {
     .get(function (req, res, next) {
       auth(req, res, next)
     }, function (req, res, next) {
-      Conversation.findById(req.params.id, '_id messages participants')
+      Conversation.findById(req.params.id, '_id messages.content messages._author participants._user')
         .populate('messages._author', '_id pseudo')
         .populate('participants._user', '_id pseudo')
         .exec(function (err, conv) {
