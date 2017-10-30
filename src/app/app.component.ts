@@ -20,11 +20,13 @@ export class AppComponent {
   token = '';
   id = '';
   pseudo = '';
-  conversations: string[];
-  selectedConversation = [''];
+  conversations;
+  selectedConversation;
   userSearched;
   email= '';
   searchId= '';
+  message = '';
+  convSelected = false;
 
   changePage(choice: string) {
     this.page = choice;
@@ -57,7 +59,9 @@ export class AppComponent {
   me() {
     console.log('retrieving user\'s data');
     this.userService.getUser(this.token).subscribe(
-      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversations = data['conversations'])
+      (data) => (this.id = data['id'], this.pseudo = data['pseudo'], this.conversations = data['conversations']),
+      (err) => this.errorRegister = err,
+      () => this.selectConv(this.conversations[0].id)
     );
     this.connected = true;
     console.log('done');
@@ -72,6 +76,21 @@ export class AppComponent {
     this.conversationService.createConv(user.id, this.token).subscribe(
       (data) => this.conversations.push(data['id'])
     );
+  }
+  selectConv(convId) {
+    this.conversationService.getConv(convId, this.token).subscribe(
+      (data) => this.selectedConversation = data,
+      (err) => this.error = err,
+      () => {
+        this.convSelected = true;
+        this.selectConv(convId);
+      }
+
+    );
+  }
+  sendMessage() {
+    this.conversationService.sendMessage(this.message, this.selectedConversation.id, this.token);
+    this.message = '';
   }
 }
 

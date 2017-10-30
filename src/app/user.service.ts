@@ -25,4 +25,5 @@ export class UserService {
     this.url = this.apiUrl + this.searchUserRoute + pseudo;
     return this.http.get(this.url, {headers: header});
   }
+
 }

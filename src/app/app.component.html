@@ -58,37 +58,33 @@
   </div>
   <div class="row">
     <div class="col s3 conversation-list" style="background-color:white">
-    <ul>
+    <ul class="ulsearch">
         <h5>Your conversations</h5>
-        <li *ngFor="let conversation of conversations">
-        <p style="">{{conversation}}</p></li>
+        <li *ngFor="let conversation of conversations" (click)="selectConv(conversation.id)">{{conversation.partner.pseudo}}</li>
     </ul>
   </div>
 
-  <div class="col s9">
+  <div class="col s9" *ngIf="convSelected">
     <div class="window ">
       <div class="window-controls">
-        <p>{{conversation}}</p>
+        <p>{{selectedConversation.participants[0].pseudo}}</p>
       </div>
         <div class="content">
 
-         <div class="message-box" style="">
+         <div class="message-box" style="" >
           <ul>
-
-            <li  *ngFor="let message of selectedConversation">
-              <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/person.png" style="border-radius:50%; width:20px"> <p class="message" style="display:inline-block">{{message}}</p></li>
-            <li class="message-sent" *ngFor="let message of selectedConversation">{{message}}</li>
+            <li *ngFor="let message of selectedConversation.messages"><p class="message-sent" *ngIf="message.author.id == id">{{message.content}}</p><span *ngIf="message.author.id != id"><img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/person.png" style="border-radius:50%; width:20px"> <p class="message" style="display:inline-block">{{message.content}}</p></span></li>
           </ul>
 
         </div>
 
         <div class="inputText col s10">
 
-          <input style="margin-top:15px"type="text"/>
+          <input style="margin-top:15px"type="text" [(ngModel)]="message"/>
         </div>
         <div class="col s2">
 
-          <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e; margin-top:15px"  (click)="changePage('register')">Send</a>
+          <a class="waves-effect waves-light btn z-depth-3 hoverable " style="background-color: #ebb81e; margin-top:15px"  (click)="sendMessage()">Send</a>
         </div>
       </div>
   </div>
@@ -96,10 +92,10 @@
 </div>
 
 
-  <div id="search">
+  <div class="search">
   <input id="Research" type="Research" class="validate" placeholder="Search User" [(ngModel)]="searchId">
   <a class="waves-effect waves-light btn z-depth-3 hoverable" style="background-color: #fff; color:#ebb81e"  (click)="search()">Search</a>
-    <ul class="userSearch">
+    <ul class="ulsearch">
       <li  *ngFor="let user of userSearched" (click)="createConv(user)">{{user.pseudo}}</li>
     </ul>
   </div>
